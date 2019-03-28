@@ -1,0 +1,6 @@
+{
+  "path-intellisense.mappings": {
+    "src": "${workspaceRoot}/src",
+    "@common": "${workspaceRoot}/src/common"
+  }
+}
