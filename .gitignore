@@ -2,6 +2,8 @@
 
 # dependencies
 /node_modules
+/component/fiiish-general
+package-lock.json
 /.pnp
 .pnp.js
 

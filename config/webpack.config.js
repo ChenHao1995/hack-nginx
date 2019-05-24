@@ -15,7 +15,7 @@ const ManifestPlugin = require('webpack-manifest-plugin')
 const InterpolateHtmlPlugin = require('react-dev-utils/InterpolateHtmlPlugin')
 const WorkboxWebpackPlugin = require('workbox-webpack-plugin')
 const WatchMissingNodeModulesPlugin = require('react-dev-utils/WatchMissingNodeModulesPlugin')
-const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
+// const ModuleScopePlugin = require('react-dev-utils/ModuleScopePlugin')
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer')
   .BundleAnalyzerPlugin
 const getCSSModuleLocalIdent = require('react-dev-utils/getCSSModuleLocalIdent')
@@ -265,7 +265,7 @@ module.exports = function(webpackEnv) {
         // To fix this, we prevent you from importing files out of src/ -- if you'd like to,
         // please link the files into your node_modules/ and let module-resolution kick in.
         // Make sure your source files are compiled, as they will not be processed in any way.
-        new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
+        // new ModuleScopePlugin(paths.appSrc, [paths.appPackageJson]),
       ],
     },
     resolveLoader: {
@@ -314,43 +314,14 @@ module.exports = function(webpackEnv) {
               },
             },
             {
-              test: /\.(js|jsx)$/,
-              include: paths.fiiishGeneral,
-              loader: 'babel-loader',
-              options: {
-                presets: ['react-app'],
-                plugins: [
-                  [
-                    require.resolve('babel-plugin-import'),
-                    {
-                      libraryName: 'antd',
-                      style: true,
-                    },
-                    'antd',
-                  ],
-                  [
-                    require.resolve('babel-plugin-import'),
-                    {
-                      style: false,
-                      libraryName: 'lodash',
-                      libraryDirectory: '',
-                      camel2DashComponentName: false,
-                    },
-                    'lodash',
-                  ],
-                ],
-              },
-            },
-            // Process application JS with Babel.
-            // The preset includes JSX, Flow, TypeScript, and some ESnext features.
-            {
               test: /\.(js|mjs|jsx|ts|tsx)$/,
-              include: [paths.appSrc],
+              include: [paths.appSrc, paths.fiiishGeneral],
               loader: require.resolve('babel-loader'),
               options: {
                 customize: require.resolve(
                   'babel-preset-react-app/webpack-overrides'
                 ),
+                presets: ['react-app'],
 
                 plugins: [
                   [

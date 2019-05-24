@@ -1,4 +1,4 @@
-import '@common/js/global'
+import '@common/global'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from 'src/module/App'

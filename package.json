@@ -8,6 +8,7 @@
     "@babel/plugin-proposal-decorators": "^7.4.0",
     "@svgr/webpack": "4.1.0",
     "@types/jest": "24.0.11",
+    "@types/lodash": "^4.14.124",
     "@types/node": "11.11.3",
     "@types/react": "16.8.8",
     "@types/react-dom": "16.8.2",
@@ -20,6 +21,7 @@
     "babel-plugin-import": "^1.11.0",
     "babel-plugin-named-asset-import": "^0.3.1",
     "babel-preset-react-app": "^7.0.2",
+    "backbone-react": "^1.0.5",
     "bfj": "6.1.1",
     "case-sensitive-paths-webpack-plugin": "2.2.0",
     "compression": "^1.7.3",
@@ -36,9 +38,8 @@
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-react": "7.12.4",
     "express": "^4.16.4",
-    "fiiish-general": "^0.9.0",
+    "fiiish-general": "^1.0.0-beta",
     "file-loader": "2.0.0",
-    "fs-extra": "7.0.1",
     "html-webpack-plugin": "4.0.0-alpha.2",
     "htmlescape": "^1.1.1",
     "identity-obj-proxy": "3.0.0",
@@ -85,7 +86,8 @@
     "build": "APP_ENV=production npm-run-all build:client build:ssr",
     "build:client": "node scripts/build.js",
     "build:ssr": "INLINE_RUNTIME_CHUNK=false SSR=true node scripts/build.js",
-    "test": "node scripts/test.js"
+    "test": "node scripts/test.js",
+    "cli": "node bin/cli.js"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -145,5 +147,10 @@
     "presets": [
       "react-app"
     ]
+  },
+  "devDependencies": {
+    "commander": "^2.20.0",
+    "fs-extra": "^7.0.1",
+    "inquirer": "^6.3.1"
   }
 }

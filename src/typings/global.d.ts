@@ -1,12 +1,13 @@
-import _ from 'underscore'
+import _, { UnderscoreStatic } from 'underscore'
 import { AxiosStatic } from 'axios'
 
 declare global {
-  const _: typeof _
+  const _: UnderscoreStatic
   const axios: AxiosStatic
 
   interface Window {
-    _: typeof _
+    _: UnderscoreStatic
     axios: AxiosStatic
+    cache: any
   }
 }

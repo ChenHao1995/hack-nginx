@@ -20,6 +20,7 @@ function ensureSlash(inputPath, needsSlash) {
   }
 }
 
+const useLocalFiiishGeneral = process.env.npm_config_localGeneral
 const getPublicUrl = appPackageJson =>
   envPublicUrl || require(appPackageJson).homepage
 
@@ -48,6 +49,7 @@ const moduleFileExtensions = [
   'json',
   'web.jsx',
   'jsx',
+  'module.less',
 ]
 
 // Resolve file paths in the same order as webpack
@@ -80,7 +82,9 @@ module.exports = {
   testsSetup: resolveModule(resolveApp, 'src/setupTests'),
   proxySetup: resolveApp('src/setupProxy.js'),
   appNodeModules: resolveApp('node_modules'),
-  fiiishGeneral: resolveApp('node_modules/fiiish-general/lib'),
+  fiiishGeneral: useLocalFiiishGeneral
+    ? resolveApp('node_modules/fiiish-general')
+    : resolveApp('src/component/fiiish-general'),
   publicUrl: getPublicUrl(resolveApp('package.json')),
   servedPath: getServedPath(resolveApp('package.json')),
 }
