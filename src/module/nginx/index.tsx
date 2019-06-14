@@ -11,79 +11,60 @@ import {
 } from 'antd'
 import { columns } from './config'
 import ModalForm from './view/modal-form'
+import { inject, observer } from 'backbone-react'
+import Nginxs, { Nginx } from './model'
 const { Header, Footer, Sider, Content } = Layout
 const { Option } = Select
 
-class Nginx extends Component<{ form: any }> {
+@inject('uiState', { Nginxs, Nginx })
+@observer
+class NginxConfig extends Component<{ form: any; Nginxs: any }> {
+  state = {
+    visible: false,
+  }
   constructor(props) {
     super(props)
   }
+  componentDidMount() {}
+  handleModal = action => {
+    this.setState({
+      visible: action,
+    })
+  }
   render() {
-    const dataSource = [
-      {
-        key: '1',
-        name: '胡彦斌',
-        age: 32,
-        address: '西湖区湖底公园1号',
-      },
-      {
-        key: '2',
-        name: '胡彦祖',
-        age: 42,
-        address: '西湖区湖底公园1号',
-      },
-    ]
-
-    const { form } = this.props
+    const { form, Nginxs } = this.props
     const { getFieldDecorator } = form
+    console.log(this.props)
+    const dataSource = Nginxs.toJSON()
 
     return (
       <Layout>
         <Header>Header</Header>
-
-        <Content>
+        <Content style={{ padding: '20px' }}>
           <div>
             <Select
-              defaultValue="lucy"
+              defaultValue="T1"
               style={{ width: 120 }}
               onChange={() => {}}>
-              <Option value="jack">Jack</Option>
-              <Option value="lucy">Lucy</Option>
+              <Option value="jack">T1</Option>
+              <Option value="lucy">T2</Option>
             </Select>
-            <Button type="primary">Primary</Button>
-            <Button type="primary">Primary</Button>
+            <Button type="primary" onClick={this.handleModal.bind(null, true)}>
+              新增upstrem配置
+            </Button>
+            <Button type="primary">备份Nginx配置文件</Button>
           </div>
-          <Table dataSource={dataSource} columns={columns} />
+          <Table dataSource={dataSource} columns={columns} bordered />
         </Content>
-        <Footer>Footer</Footer>
-        {/* <Modal
-          title="新增upstream（支持非注册到zk的服务）"
-          visible={true}
-          onOk={() => {}}
-          onCancel={() => {}}>
-          <Form layout="vertical">
-            <Form.Item label="Title">
-              {getFieldDecorator('title', {
-                rules: [
-                  {
-                    required: true,
-                    message: 'Please input the title of collection!',
-                  },
-                ],
-              })(<Input />)}
-            </Form.Item>
-            <Form.Item label="Description">
-              {getFieldDecorator('description')(<Input type="textarea" />)}
-            </Form.Item>
-          </Form>
-        </Modal> */}
+        {/* <Footer>Footer</Footer> */}
         <ModalForm
-          visible={true}
+          visible={this.state.visible}
           title="新增upstream（支持非注册到zk的服务）"
+          onCancel={this.handleModal.bind(null, false)}
         />
       </Layout>
     )
   }
 }
 
-export default Form.create({ name: 'nginx' })(Nginx)
+export default Form.create({ name: 'nginx' })(NginxConfig)

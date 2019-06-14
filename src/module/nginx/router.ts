@@ -1,4 +1,5 @@
 import { routerConfig } from 'backbone-react'
+import Nginxs from './model'
 
 const config: routerConfig = {
   components: {
@@ -9,7 +10,7 @@ const config: routerConfig = {
   },
   onEnter: {
     nginx(step) {
-      console.log('nginx route enter')
+      Nginxs.getNginxList()
       return true
     },
   },
