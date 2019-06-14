@@ -8,6 +8,8 @@ import {
   Modal,
   Form,
   Input,
+  Row,
+  Col,
 } from 'antd'
 import { columns } from './config'
 import ModalForm from './view/modal-form'
@@ -41,20 +43,30 @@ class NginxConfig extends Component<{ form: any; Nginxs: any }> {
       <Layout>
         <Header>Header</Header>
         <Content style={{ padding: '20px' }}>
-          <div>
+          <div style={{ marginBottom: '20px' }}>
             <Select
               defaultValue="T1"
-              style={{ width: 120 }}
+              style={{ width: '200px', marginRight: '10px' }}
               onChange={() => {}}>
               <Option value="jack">T1</Option>
               <Option value="lucy">T2</Option>
             </Select>
-            <Button type="primary" onClick={this.handleModal.bind(null, true)}>
+            <Button
+              type="primary"
+              onClick={this.handleModal.bind(null, true)}
+              style={{ marginRight: '10px' }}>
               新增upstrem配置
             </Button>
-            <Button type="primary">备份Nginx配置文件</Button>
+            <Button type="primary" style={{ marginRight: '10px' }}>
+              备份Nginx配置文件
+            </Button>
           </div>
-          <Table dataSource={dataSource} columns={columns} bordered />
+          <Table
+            dataSource={dataSource}
+            columns={columns}
+            bordered
+            pagination={false}
+          />
         </Content>
         {/* <Footer>Footer</Footer> */}
         <ModalForm

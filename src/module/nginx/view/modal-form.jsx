@@ -81,14 +81,10 @@ class ModalForm extends Component {
             })(<Input />)}
           </Form.Item>
           <Form.Item
-            label={
-              <span>
-                <span style={{ color: '#f5222d' }}>*</span> upstrem负载
-              </span>
-            }>
+            label={<span className="ant-form-item-required">upstrem负载</span>}>
             {upstremLoadList.map((v, i) => {
               return (
-                <Row>
+                <Row key={i}>
                   <Col span={11}>
                     <Form.Item>
                       {getFieldDecorator(`upstremLoadIP-${v}`, {

@@ -12,9 +12,9 @@ import { parse } from 'url'
 export class Nginx extends Model {
   attributes = this.attributes
 
-  get idAttribute() {
-    return 'key'
-  }
+  // get idAttribute() {
+  //   return 'id'
+  // }
 
   deleteNginxNode = ({ ip, port, name }) => {
     return axios({
@@ -50,11 +50,13 @@ export class Nginxs extends Collection {
           key: `${i}-${index}`,
           name: v.name,
           nameRowSpan: first ? v.upstream_nodes.length : 0,
+          oddRow: Math.ceil((i + 1) / 2) > (i + 1) / 2 ? true : false,
           ...value,
         })
         first = false
       })
     })
+    this.reset(result)
     return result
   }
 
