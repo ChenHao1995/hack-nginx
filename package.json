@@ -151,6 +151,7 @@
   "devDependencies": {
     "commander": "^2.20.0",
     "fs-extra": "^7.0.1",
+    "hosts-group": "^0.1.1",
     "inquirer": "^6.3.1"
   }
 }
